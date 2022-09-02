@@ -1,0 +1,4 @@
+# Project exclude paths
+/optika-admin-ui/target/
+/optika-core-ui/target/
+/optika-data/target/

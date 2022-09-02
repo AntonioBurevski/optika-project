@@ -1,0 +1,40 @@
+.Table {
+    width: 100%;
+    margin-top: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.headerRow {
+    border: 1px solid #e0e0e0 !important;
+    border-radius: .28571429rem .28571429rem 0 0;
+}
+
+.headerRow,
+.evenRow,
+.oddRow {
+    border: 1px solid #e0e0e0;
+    border-top: none;
+}
+.evenRow:hover,
+.oddRow:hover {
+    background: rgba(0,0,0,.05)!important;
+    color: rgba(0,0,0,.95)!important;
+}
+
+.oddRow {
+    background-color: #fafafa;
+}
+
+.headerColumn {
+    text-transform: none;
+}
+
+.bodyColumn {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bodyColumn.dropdown {
+    overflow: visible !important;
+}

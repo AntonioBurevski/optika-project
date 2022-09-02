@@ -1,0 +1,27 @@
+package org.graduation.optikaadminapi.error;
+
+public enum ErrorCode {
+
+    UNKNOWN_PRODUCT_ID,
+
+    UNKNOWN_HOT_DEAL_ID,
+
+    INVALID_DATES,
+
+    DUPLICATE_CODE,
+
+    UNKNOWN_PRODUCT_FOR_HOT_DEAL,
+
+    UNKNOWN_HOT_DEAL_FOR_PRODUCT,
+
+    UNKNOWN_ARCHIVE_ID,
+
+    UNKNOWN_PRODUCT_ID_FOR_ARCHIVE,
+
+    INVALID_FILE,
+
+    ERROR_SETTING_IMAGE_BYTES,
+
+    UNKNOWN_CUSTOMER_CONTACT_ID;
+
+}

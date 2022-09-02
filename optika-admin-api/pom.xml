@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <version>1.0-SNAPSHOT</version>
+
+    <parent>
+        <artifactId>optika</artifactId>
+        <groupId>org.graduation</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.graduation</groupId>
+    <artifactId>optika-admin-api</artifactId>
+
+    <name>Optika Admin API</name>
+    <description>Optika Admin API</description>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>cz.habarta.typescript-generator</groupId>
+                <artifactId>typescript-generator-maven-plugin</artifactId>
+                <version>2.12.476</version>
+                <executions>
+                    <execution>
+                        <id>generate-ts-types</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <jsonLibrary>jackson2</jsonLibrary>
+                            <classPatterns>
+                                <pattern>org.graduation.optikaadminapi.**.dto.*</pattern>
+                            </classPatterns>
+                            <customTypeMappings>
+                                <mapping>java.math.BigDecimal:number</mapping>
+                                <mapping>java.time.LocalDate:string</mapping>
+                                <mapping>java.time.LocalTime:string</mapping>
+                                <mapping>java.time.LocalDateTime:string</mapping>
+                                <mapping>org.springframework.web.multipart.MultipartFile:File</mapping>
+                            </customTypeMappings>
+                            <optionalAnnotations>javax.annotation.Nullable</optionalAnnotations>
+                            <outputKind>module</outputKind>
+                            <outputFileType>declarationFile</outputFileType>
+                            <outputFile>../optika-admin-ui/src/ts-types/api.types.d.ts</outputFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>generate-ts-enums</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                        <configuration>
+                            <jsonLibrary>jackson2</jsonLibrary>
+                            <classPatterns>
+                                <pattern>org.graduation.data.model.enums.*</pattern>
+                            </classPatterns>
+                            <mapEnum>asEnum</mapEnum>
+                            <outputKind>module</outputKind>
+                            <nonConstEnums>true</nonConstEnums>
+                            <outputFileType>implementationFile</outputFileType>
+                            <outputFile>../optika-admin-ui/src/ts-types/api.enums.ts</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>build-info</id>-->
+<!--                        <goals>-->
+<!--                            <goal>build-info</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+<!--                <configuration>-->
+<!--                    <source>8</source>-->
+<!--                    <target>8</target>-->
+<!--                    <annotationProcessorPaths>-->
+<!--&lt;!&ndash;                        <path>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <groupId>org.mapstruct</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <artifactId>mapstruct-processor</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <version>1.3.1.Final</version>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </path>&ndash;&gt;-->
+<!--                        <path>-->
+<!--                            <groupId>org.projectlombok</groupId>-->
+<!--                            <artifactId>lombok</artifactId>-->
+<!--                            <version>1.16.12</version>-->
+<!--                        </path>-->
+<!--                    </annotationProcessorPaths>-->
+<!--                </configuration>-->
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.5.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok-mapstruct-binding -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-mapstruct-binding</artifactId>
+            <version>0.2.0</version>
+        </dependency>
+
+        <!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-devtools</artifactId>-->
+<!--            <scope>runtime</scope>-->
+<!--            <optional>true</optional>-->
+<!--            <version>2.5.4</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <version>1.16.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <version>2.5.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.graduation</groupId>
+            <artifactId>optika-data</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.xmlunit</groupId>
+            <artifactId>xmlunit-core</artifactId>
+            <version>2.8.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-jdk8</artifactId>
+            <version>1.2.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct-processor</artifactId>
+            <version>1.2.0.Final</version>
+        </dependency>
+    </dependencies>
+
+<!--    <build>-->
+<!--        <plugins>-->
+<!--&lt;!&ndash;             ... &ndash;&gt;-->
+<!--&lt;!&ndash;                        <plugin>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <groupId>cz.habarta.typescript-generator</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <artifactId>typescript-generator-maven-plugin</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <version>2.12.476</version>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </plugin>&ndash;&gt;-->
+<!--            -->
+<!--        </plugins>-->
+<!--    </build>-->
+
+
+</project>
